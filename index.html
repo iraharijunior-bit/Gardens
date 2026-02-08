@@ -14,6 +14,14 @@
     <meta name="theme-color" content="#1f7a4d">
     <!-- ==================== END FAVICON ==================== -->
     
+    <!-- ==================== META TAGS FOR NETLIFY FORMS ==================== -->
+    <meta name="description" content="Premium gardening solutions with curated subscription boxes, expert guidance, and sustainable practices for gardeners worldwide.">
+    <meta name="keywords" content="gardening, subscription boxes, sustainable gardening, plant care, gardening tools, horticulture">
+    <meta property="og:title" content="Gardens | Premium Gardening Solutions">
+    <meta property="og:description" content="Transform your space with our premium gardening boxes and expert community support.">
+    <meta property="og:type" content="website">
+    <!-- ==================== END META TAGS ==================== -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -1418,96 +1426,6 @@
             visibility: visible;
         }
 
-        /* Email Preview Modal */
-        .email-preview-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            z-index: 1003;
-            max-width: 700px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .email-preview-modal.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .email-preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-green);
-        }
-
-        .email-preview-header h3 {
-            color: var(--primary-green);
-            margin: 0;
-        }
-
-        .email-preview-close {
-            background: none;
-            border: none;
-            color: var(--light-text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .email-preview-close:hover {
-            color: var(--primary-green);
-        }
-
-        .email-preview-content {
-            font-family: 'Courier New', monospace;
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .email-preview-line {
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .email-preview-label {
-            font-weight: 600;
-            color: var(--primary-green);
-            display: inline-block;
-            min-width: 120px;
-        }
-
-        .email-preview-message {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--white);
-            border-radius: var(--radius);
-            border-left: 4px solid var(--accent-blue);
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        .email-preview-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-        }
-
         /* Footer */
         footer {
             background: var(--black);
@@ -1904,45 +1822,6 @@
         </button>
     </div>
 
-    <!-- Email Preview Modal -->
-    <div class="message-backdrop" id="emailBackdrop"></div>
-    <div class="email-preview-modal" id="emailPreview">
-        <div class="email-preview-header">
-            <h3>Email Preview</h3>
-            <button class="email-preview-close" onclick="closeEmailPreview()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="email-preview-content">
-            <div class="email-preview-line">
-                <span class="email-preview-label">To:</span> iraharijunior@gmail.com
-            </div>
-            <div class="email-preview-line">
-                <span class="email-preview-label">From:</span> <span id="previewEmail"></span>
-            </div>
-            <div class="email-preview-line">
-                <span class="email-preview-label">Subject:</span> Gardens Contact Form - <span id="previewSubject"></span>
-            </div>
-            <div class="email-preview-line">
-                <span class="email-preview-label">Name:</span> <span id="previewName"></span>
-            </div>
-            <div class="email-preview-line">
-                <span class="email-preview-label">Date:</span> <span id="previewDate"></span>
-            </div>
-            <div class="email-preview-message" id="previewMessage"></div>
-        </div>
-        <div class="email-preview-actions">
-            <button class="cta-button" onclick="sendEmail()" style="background: var(--primary-green);">
-                <i class="fas fa-paper-plane"></i>
-                Send Email
-            </button>
-            <button class="cta-button" onclick="closeEmailPreview()" style="background: var(--light-text);">
-                <i class="fas fa-edit"></i>
-                Edit
-            </button>
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="container header-container">
@@ -2274,8 +2153,10 @@
                 <p>Subscribe for exclusive tips, seasonal guides, and special offers</p>
             </div>
             
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+            <!-- NETLIFY FORM - Newsletter Subscription -->
+            <form class="newsletter-form" id="newsletterForm" name="newsletter" netlify>
+                <input type="email" class="newsletter-input" name="email" placeholder="Enter your email address" required>
+                <input type="hidden" name="form-name" value="newsletter">
                 <button type="submit" class="cta-button">
                     <i class="fas fa-paper-plane"></i>
                     Subscribe
@@ -2412,7 +2293,10 @@
                         <p>Fill out the form below and our gardening experts will get back to you promptly.</p>
                     </div>
                     
-                    <form class="contact-form" id="professionalContactForm" novalidate>
+                    <!-- NETLIFY FORM - Contact -->
+                    <form class="contact-form" id="professionalContactForm" name="contact" netlify>
+                        <input type="hidden" name="form-name" value="contact">
+                        
                         <div class="form-row">
                             <div class="form-group required">
                                 <label for="fullName">Full Name</label>
@@ -2427,7 +2311,7 @@
                             </div>
                         </div>
                         
-                        <div class="form-group required">
+                        <div class="form-group">
                             <label for="phone">Phone Number (Optional)</label>
                             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
                         </div>
@@ -2455,6 +2339,13 @@
                             <label for="message">Your Message</label>
                             <textarea id="message" name="message" rows="6" required placeholder="Tell us about your gardening needs, questions, or suggestions..."></textarea>
                             <div class="error-message" id="messageError">Please enter your message</div>
+                        </div>
+                        
+                        <!-- Honeypot field for spam protection -->
+                        <div style="display: none;">
+                            <label>Don't fill this out if you're human: 
+                                <input name="bot-field">
+                            </label>
                         </div>
                         
                         <div class="form-submit">
@@ -2603,9 +2494,6 @@
             `;
             
             document.body.appendChild(notification);
-            
-            // Play notification sound
-            playNotificationSound(type);
             
             // Show notification with animation
             setTimeout(() => {
@@ -2813,11 +2701,10 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Newsletter Form
+        // Newsletter Form with Netlify
         const newsletterForm = document.getElementById('newsletterForm');
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = newsletterForm.querySelector('input[type="email"]').value;
             
             // Show loading state
             const submitBtn = newsletterForm.querySelector('button[type="submit"]');
@@ -2825,22 +2712,41 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
             submitBtn.disabled = true;
             
+            // Let Netlify handle the form submission
             setTimeout(() => {
-                showNotification('subscribe', 
-                    'Thank You for Subscribing!', 
-                    `Welcome to our gardening community! We've sent a confirmation to ${email}`
-                );
-                
-                newsletterForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+                // Submit the form to Netlify
+                fetch('/', {
+                    method: 'POST',
+                    body: new FormData(newsletterForm)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showNotification('subscribe', 
+                            'Thank You for Subscribing!', 
+                            'Welcome to our gardening community! You\'ll receive a confirmation email shortly.'
+                        );
+                        newsletterForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    showNotification('error',
+                        'Subscription Failed',
+                        'There was an issue with your subscription. Please try again or contact us directly.'
+                    );
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
             }, 1500);
         });
 
-        // Professional Contact Form
+        // Contact Form with Netlify
         const contactForm = document.getElementById('professionalContactForm');
         const formInputs = contactForm.querySelectorAll('input, select, textarea');
-        
+
         // Form validation
         function validateForm() {
             let isValid = true;
@@ -2897,68 +2803,6 @@
             return isValid;
         }
         
-        // Email preview function
-        function showEmailPreview(formData) {
-            document.getElementById('previewName').textContent = formData.fullName;
-            document.getElementById('previewEmail').textContent = formData.email;
-            document.getElementById('previewSubject').textContent = formData.subject;
-            document.getElementById('previewMessage').textContent = formData.message;
-            document.getElementById('previewDate').textContent = new Date().toLocaleString();
-            
-            document.getElementById('emailBackdrop').classList.add('show');
-            document.getElementById('emailPreview').classList.add('show');
-        }
-        
-        // Close email preview
-        function closeEmailPreview() {
-            document.getElementById('emailBackdrop').classList.remove('show');
-            document.getElementById('emailPreview').classList.remove('show');
-        }
-        
-        // Send email function
-        function sendEmail() {
-            const formData = {
-                fullName: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                inquiryType: document.getElementById('inquiryType').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-            
-            closeEmailPreview();
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('.submit-button');
-            submitBtn.classList.add('loading');
-            
-            // Simulate email sending (in production, this would use EmailJS or a backend)
-            setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                
-                // Show success message
-                showSuccessMessage();
-                
-                // Log the email data to console (in production, this would send to your server)
-                console.log('=== EMAIL SENT TO IRAHARIJUNIOR@GMAIL.COM ===');
-                console.log('From:', formData.email);
-                console.log('Name:', formData.fullName);
-                console.log('Phone:', formData.phone || 'Not provided');
-                console.log('Inquiry Type:', formData.inquiryType);
-                console.log('Subject:', formData.subject);
-                console.log('Message:', formData.message);
-                console.log('Time:', new Date().toLocaleString());
-                console.log('==============================================');
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Also log to server (simulated)
-                logContactToServer(formData);
-                
-            }, 2000);
-        }
-        
         // Show success message
         function showSuccessMessage() {
             document.getElementById('successBackdrop').classList.add('show');
@@ -2971,47 +2815,67 @@
             document.getElementById('successMessage').classList.remove('show');
         }
         
-        // Log contact to server (simulated)
-        function logContactToServer(formData) {
-            // In a real application, this would be an API call to your server
-            const contactLog = {
-                to: 'iraharijunior@gmail.com',
-                from: formData.email,
-                subject: `Gardens Contact Form: ${formData.subject}`,
-                name: formData.fullName,
-                phone: formData.phone,
-                inquiryType: formData.inquiryType,
-                message: formData.message,
-                timestamp: new Date().toISOString(),
-                ip: '127.0.0.1' // In production, get real IP
-            };
-            
-            console.log('Contact logged to server:', contactLog);
-            
-            // Show notification
-            showNotification('success', 'Email Sent!', 'Your message has been sent to iraharijunior@gmail.com');
-        }
-        
-        // Form submission
+        // Contact Form submission
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             if (validateForm()) {
-                const formData = {
-                    fullName: document.getElementById('fullName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    inquiryType: document.getElementById('inquiryType').value,
-                    subject: document.getElementById('subject').value,
-                    message: document.getElementById('message').value
-                };
+                // Show loading state
+                const submitBtn = contactForm.querySelector('.submit-button');
+                submitBtn.classList.add('loading');
                 
-                // Show email preview before sending
-                showEmailPreview(formData);
+                // Submit to Netlify
+                fetch('/', {
+                    method: 'POST',
+                    body: new FormData(contactForm)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Show success message
+                        showSuccessMessage();
+                        
+                        // Log to console
+                        const formData = {
+                            fullName: document.getElementById('fullName').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            inquiryType: document.getElementById('inquiryType').value,
+                            subject: document.getElementById('subject').value,
+                            message: document.getElementById('message').value
+                        };
+                        
+                        console.log('=== FORM SUBMITTED VIA NETLIFY ===');
+                        console.log('From:', formData.email);
+                        console.log('Name:', formData.fullName);
+                        console.log('Time:', new Date().toLocaleString());
+                        console.log('====================================');
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Show notification
+                        showNotification('success', 
+                            'Message Sent Successfully!', 
+                            'Your message has been submitted. You\'ll receive a confirmation email shortly.'
+                        );
+                        
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    showNotification('error',
+                        'Submission Failed',
+                        'There was an issue sending your message. Please try again or contact us directly.'
+                    );
+                })
+                .finally(() => {
+                    submitBtn.classList.remove('loading');
+                });
             }
         });
-        
-        // Real-time validation
+
+        // Real-time validation for contact form
         formInputs.forEach(input => {
             input.addEventListener('blur', () => {
                 validateForm();
@@ -3090,7 +2954,6 @@
             if (e.key === 'Escape') {
                 navLinks.classList.remove('active');
                 mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                closeEmailPreview();
                 closeSuccessMessage();
             }
         });

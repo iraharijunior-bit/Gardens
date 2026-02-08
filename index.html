@@ -1,0 +1,3089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gardens | Premium Gardening Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-green: #1f7a4d;
+            --secondary-green: #3ecf8e;
+            --accent-gold: #d4af37;
+            --accent-blue: #3498db;
+            --light-beige: #f8f5f0;
+            --dark-text: #1a1a1a;
+            --light-text: #5a5a5a;
+            --white: #ffffff;
+            --black: #111111;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --radius: 12px;
+            --header-height: 80px;
+        }
+
+        /* Dark Mode Variables - Fixed contrast */
+        .dark-mode {
+            --primary-green: #4abd7a;
+            --secondary-green: #5fdb94;
+            --accent-gold: #e6c158;
+            --accent-blue: #5dade2;
+            --light-beige: #1a1a1a;
+            --dark-text: #f0f0f0;
+            --light-text: #cccccc;
+            --white: #2a2a2a;
+            --black: #111111;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: var(--white);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: var(--header-height);
+        }
+
+        .dark-mode header {
+            background: rgba(42, 42, 42, 0.98);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-gold);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: rotate(30deg);
+        }
+
+        .dark-mode .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-green);
+            transform: translateY(-5px);
+        }
+
+        .cta-button {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-green);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Hero Section with Blue Accent */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: var(--header-height);
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+            color: var(--accent-blue);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.7s;
+            line-height: 1.8;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        /* About Us Section */
+        .about-section {
+            background: var(--light-beige);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-blue));
+            border-radius: 50%;
+            opacity: 0.05;
+            transform: translate(100px, -100px);
+        }
+
+        .about-section:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-gold));
+            border-radius: 50%;
+            opacity: 0.05;
+            transform: translate(-100px, 100px);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-text p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .about-feature i {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Experience & Impact Counter */
+        .experience-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-card {
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        }
+
+        .experience-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+        }
+
+        .experience-card:hover:before {
+            opacity: 1;
+        }
+
+        .experience-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            display: block;
+        }
+
+        .experience-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Mission & Values Section */
+        .mission-section {
+            background: var(--white);
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h2 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-content p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            background: var(--light-beige);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .value-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* Sustainability Section */
+        .sustainability-section {
+            background: var(--light-beige);
+        }
+
+        .sustainability-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .sustainability-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+        }
+
+        .sustainability-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .sustainability-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Stats Section with Enhanced Countdown Animation */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-item.visible:before {
+            transform: translateX(0);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            display: block;
+            position: relative;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Progress Animation */
+        .count-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-blue);
+            transition: width 2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .stat-item.counting .count-progress {
+            width: 100%;
+        }
+
+        /* Boxes Section */
+        .boxes-section {
+            background: var(--white);
+            padding: 6rem 0;
+        }
+
+        .boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .box-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .box-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .box-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .box-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .box-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .box-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .box-card:hover .box-image img {
+            transform: scale(1.1);
+        }
+
+        .box-content {
+            padding: 2rem;
+        }
+
+        .box-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .box-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .box-features li {
+            padding: 0.5rem 0;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .box-features li i {
+            color: var(--accent-gold);
+        }
+
+        .box-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .box-price {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--light-text);
+            font-weight: 400;
+        }
+
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            transform: translateX(100%);
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 350px;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification-icon {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--white);
+        }
+
+        .notification-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        /* Success Notification */
+        .notification-toast.success {
+            background: var(--primary-green);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        /* Error Notification */
+        .notification-toast.error {
+            background: #dc3545;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        /* Warning Notification */
+        .notification-toast.warning {
+            background: #ffc107;
+            border-left: 4px solid #ffd700;
+        }
+
+        .notification-toast.warning .notification-content h4,
+        .notification-toast.warning .notification-content p {
+            color: #333;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: var(--white);
+            color: var(--dark-text);
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius);
+            margin: 4rem 0;
+        }
+
+        .dark-mode .newsletter-section {
+            background: var(--white);
+            color: var(--dark-text);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.1);
+        }
+
+        /* Professional Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .contact-section {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .contact-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1519682577862-22b62b24e493?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') center/cover;
+            border-radius: 50%;
+            opacity: 0.05;
+            transform: translate(100px, -100px);
+        }
+
+        .contact-section:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1523307730650-594bc63f9d67?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') center/cover;
+            border-radius: 50%;
+            opacity: 0.05;
+            transform: translate(-100px, 100px);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Contact Information Side */
+        .contact-info {
+            padding: 3rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .contact-info {
+            background: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-header h2 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-header p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--light-beige);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .contact-card {
+            background: var(--light-beige);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .contact-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-card-content h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card-content p {
+            color: var(--light-text);
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card-content a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-card-content a:hover {
+            color: var(--primary-green);
+            gap: 0.8rem;
+        }
+
+        .business-hours {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .business-hours h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list span:first-child {
+            font-weight: 500;
+        }
+
+        .hours-list span:last-child {
+            opacity: 0.9;
+        }
+
+        /* Contact Form Side */
+        .contact-form-container {
+            padding: 3rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .contact-form-container {
+            background: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-form-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-blue));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h3 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--light-text);
+        }
+
+        .contact-form {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-text);
+            font-size: 0.95rem;
+        }
+
+        .form-group.required label:after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--dark-text);
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group select,
+        .dark-mode .form-group textarea {
+            background: var(--white);
+            color: var(--dark-text);
+            border-color: #e0e0e0;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-blue));
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .submit-button:hover:before {
+            left: 100%;
+        }
+
+        .submit-button.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .submit-button .spinner {
+            display: none;
+            animation: spin 1s linear infinite;
+        }
+
+        .submit-button.loading .spinner {
+            display: inline-block;
+        }
+
+        .submit-button.loading .button-text {
+            display: none;
+        }
+
+        .privacy-notice {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .privacy-notice i {
+            color: var(--accent-blue);
+            margin-right: 0.5rem;
+        }
+
+        /* Office Location */
+        .office-location {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .office-location {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .office-location h4 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .office-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 1rem;
+        }
+
+        .office-map img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .office-map:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Response Time Indicator */
+        .response-time {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-top: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .response-time {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .response-time h5 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .response-time p {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Success Message Modal */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1002;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .success-message.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 2.5rem;
+        }
+
+        .success-message h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .message-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .message-backdrop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Email Preview Modal */
+        .email-preview-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1003;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .email-preview-modal.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .email-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-green);
+        }
+
+        .email-preview-header h3 {
+            color: var(--primary-green);
+            margin: 0;
+        }
+
+        .email-preview-close {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .email-preview-close:hover {
+            color: var(--primary-green);
+        }
+
+        .email-preview-content {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .email-preview-line {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .email-preview-label {
+            font-weight: 600;
+            color: var(--primary-green);
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .email-preview-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent-blue);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .email-preview-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container {
+                gap: 3rem;
+            }
+            
+            .contact-info,
+            .contact-form-container {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .dark-mode .nav-links {
+                background: var(--white);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .nav-right {
+                gap: 1rem;
+            }
+            
+            .newsletter-form,
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .boxes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content,
+            .sustainability-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image,
+            .sustainability-image {
+                height: 350px;
+            }
+            
+            .notification-toast {
+                top: 1rem;
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+            
+            .contact-info,
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .features-grid,
+            .testimonials-grid,
+            .experience-grid,
+            .stats-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info,
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1rem;
+            }
+            
+            .contact-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Interactive Elements */
+        .pulse-button {
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pulse-button:hover {
+            animation: none;
+            transform: scale(1.05);
+        }
+
+        /* Count Animation Styles */
+        .count-animated {
+            animation: countUp 0.8s ease-out forwards;
+        }
+
+        /* Bounce Animation */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        .section-title p {
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 2rem auto 0;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Notification -->
+    <div class="notification-toast success" id="welcomeToast">
+        <div class="notification-icon">
+            <i class="fas fa-seedling"></i>
+        </div>
+        <div class="notification-content">
+            <h4>Welcome to Gardens!</h4>
+            <p>Your gardening journey starts here. Discover premium gardening solutions.</p>
+        </div>
+        <button class="notification-close" onclick="closeNotification('welcomeToast')">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Success Message Modal -->
+    <div class="message-backdrop" id="successBackdrop"></div>
+    <div class="success-message" id="successMessage">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h3>Message Sent Successfully!</h3>
+        <p>Thank you for contacting Gardens. Your message has been sent to iraharijunior@gmail.com. We will respond within 2 hours.</p>
+        <button class="cta-button" onclick="closeSuccessMessage()">
+            <i class="fas fa-thumbs-up"></i>
+            Got It!
+        </button>
+    </div>
+
+    <!-- Email Preview Modal -->
+    <div class="message-backdrop" id="emailBackdrop"></div>
+    <div class="email-preview-modal" id="emailPreview">
+        <div class="email-preview-header">
+            <h3>Email Preview</h3>
+            <button class="email-preview-close" onclick="closeEmailPreview()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="email-preview-content">
+            <div class="email-preview-line">
+                <span class="email-preview-label">To:</span> iraharijunior@gmail.com
+            </div>
+            <div class="email-preview-line">
+                <span class="email-preview-label">From:</span> <span id="previewEmail"></span>
+            </div>
+            <div class="email-preview-line">
+                <span class="email-preview-label">Subject:</span> Gardens Contact Form - <span id="previewSubject"></span>
+            </div>
+            <div class="email-preview-line">
+                <span class="email-preview-label">Name:</span> <span id="previewName"></span>
+            </div>
+            <div class="email-preview-line">
+                <span class="email-preview-label">Date:</span> <span id="previewDate"></span>
+            </div>
+            <div class="email-preview-message" id="previewMessage"></div>
+        </div>
+        <div class="email-preview-actions">
+            <button class="cta-button" onclick="sendEmail()" style="background: var(--primary-green);">
+                <i class="fas fa-paper-plane"></i>
+                Send Email
+            </button>
+            <button class="cta-button" onclick="closeEmailPreview()" style="background: var(--light-text);">
+                <i class="fas fa-edit"></i>
+                Edit
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <i class="fas fa-seedling"></i>
+                Gardens
+            </a>
+            
+            <div class="nav-right">
+                <nav>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#boxes">Boxes</a></li>
+                        <li><a href="#stats">Stats</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <a href="#boxes" class="cta-button pulse-button">
+                    <i class="fas fa-leaf"></i>
+                    Get Started
+                </a>
+                
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Cultivate Your Paradise</h1>
+            <p>Join 5,000+ gardeners across Europe, Asia, and New Zealand in transforming spaces into blooming sanctuaries with our premium gardening boxes and expert community support.</p>
+            <div class="hero-buttons">
+                <a href="#boxes" class="cta-button pulse-button">
+                    <i class="fas fa-shopping-basket"></i>
+                    View Boxes
+                </a>
+                <a href="#about" class="cta-button" style="background: transparent; border: 2px solid var(--accent-blue);">
+                    <i class="fas fa-info-circle"></i>
+                    About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Gardens</h2>
+                <p>International gardening solutions provider dedicated to sustainable growth</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="About Gardens">
+                </div>
+                <div class="about-text">
+                    <h2>Growing Together, Naturally</h2>
+                    <p>Gardens is an international gardening solutions provider dedicated to helping individuals, families, and organizations grow sustainable and thriving gardens. With carefully curated subscription boxes, educational activities, and expert seasonal guidance, we empower gardeners of all experience levels to cultivate confidence, creativity, and environmental responsibility.</p>
+                    
+                    <p>Operating across Europe, Asia, and New Zealand, we bring together diverse gardening traditions with modern sustainable practices, creating a global community of passionate gardeners.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h4>Global Reach</h4>
+                                <p>Serving 15+ countries across 3 continents</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-leaf"></i>
+                            <div>
+                                <h4>Sustainable Focus</h4>
+                                <p>100% eco-friendly materials and practices</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>Expert Community</h4>
+                                <p>Professional horticulturists and gardening experts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Impact Counter -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Our Impact & Experience</h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">Years of excellence in gardening solutions</p>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-number" id="expCount1">0</div>
+                    <div class="experience-label">Years Supporting Gardeners</div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-number" id="expCount2">0</div>
+                    <div class="experience-label">Gardening Activities & Resources</div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-number" id="expCount3">0</div>
+                    <div class="experience-label">Subscription Boxes Delivered</div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-number">3</div>
+                    <div class="experience-label">Continents Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="section-title">
+                    <h2>Our Mission</h2>
+                </div>
+                
+                <p>Gardens exists to make gardening accessible, enjoyable, and sustainable for everyone. Through thoughtfully designed gardening boxes, expert knowledge sharing, and community-focused initiatives, we aim to inspire people worldwide to reconnect with nature while promoting environmentally responsible growing practices.</p>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Beginner & Advanced Boxes</h3>
+                        <p>Curated subscription boxes for every skill level with premium tools and seeds.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Seasonal Guidance</h3>
+                        <p>Monthly checklists, greenhouse tips, and maintenance advice for year-round success.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>Educational Resources</h4>
+                        <p>Plant diaries, progress tracking, educational talks, and creative competitions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Our Growing Community</h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">Join thousands of satisfied gardeners worldwide</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="count-progress"></div>
+                    <div class="stat-number" id="count1">0</div>
+                    <div class="stat-label">Happy Gardeners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="count-progress"></div>
+                    <div class="stat-number" id="count2">0</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="count-progress"></div>
+                    <div class="stat-number" id="count3">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="count-progress"></div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Expert Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="sustainability-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sustainability Commitment</h2>
+                <p>Growing responsibly for a greener future</p>
+            </div>
+            
+            <div class="sustainability-content">
+                <div class="sustainability-text">
+                    <h3>Our Green Promise</h3>
+                    <p>We prioritize sustainability across every part of our operations, from supporting reduced food waste through our Oddbox concept to using eco-friendly packaging and encouraging biodiversity through wildflower and seed initiatives.</p>
+                    
+                    <p>Our goal is to help communities grow responsibly while protecting the environment for future generations. Every box we deliver, every seed we plant, and every gardener we support contributes to a more sustainable world.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="#boxes" class="cta-button">
+                            <i class="fas fa-leaf"></i>
+                            Explore Sustainable Boxes
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="sustainability-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sustainability">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boxes Section -->
+    <section class="boxes-section" id="boxes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Premium Gardening Boxes</h2>
+                <p>Choose from our carefully curated subscription boxes</p>
+            </div>
+            
+            <div class="boxes-grid">
+                <!-- Oddbox -->
+                <div class="box-card">
+                    <div class="box-badge">Most Popular</div>
+                    <div class="box-image">
+                        <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Oddbox">
+                    </div>
+                    <div class="box-content">
+                        <h3>Oddbox</h3>
+                        <p>Sustainable gardening with wonky vegetables and premium seeds.</p>
+                        
+                        <ul class="box-features">
+                            <li><i class="fas fa-check-circle"></i> Weekly deliveries of wonky vegetables</li>
+                            <li><i class="fas fa-check-circle"></i> Premium seasonal vegetable seeds</li>
+                            <li><i class="fas fa-check-circle"></i> Exclusive sustainability blog access</li>
+                            <li><i class="fas fa-check-circle"></i> Composting guide & organic fertilizers</li>
+                        </ul>
+                        
+                        <div class="box-price">
+                            <div class="price">$29.99<span>/month</span></div>
+                            <button class="cta-button" onclick="subscribeBox('oddbox')">
+                                <i class="fas fa-shopping-cart"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flourish -->
+                <div class="box-card">
+                    <div class="box-badge">Premium</div>
+                    <div class="box-image">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Flourish">
+                    </div>
+                    <div class="box-content">
+                        <h3>Flourish</h3>
+                        <p>Quarterly premium boxes for serious gardeners.</p>
+                        
+                        <ul class="box-features">
+                            <li><i class="fas fa-check-circle"></i> Four seasonal boxes per year</li>
+                            <li><i class="fas fa-check-circle"></i> Professional biodegradable seed trays</li>
+                            <li><i class="fas fa-check-circle"></i> Eco-friendly copper watering can</li>
+                            <li><i class="fas fa-check-circle"></i> Premium gardening gloves & tools</li>
+                        </ul>
+                        
+                        <div class="box-price">
+                            <div class="price">$149.99<span>/quarter</span></div>
+                            <button class="cta-button" onclick="subscribeBox('flourish')">
+                                <i class="fas fa-shopping-cart"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cottage -->
+                <div class="box-card">
+                    <div class="box-badge">Romantic</div>
+                    <div class="box-image">
+                        <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Cottage">
+                    </div>
+                    <div class="box-content">
+                        <h3>Cottage</h3>
+                        <p>Monthly romantic gardening experience.</p>
+                        
+                        <ul class="box-features">
+                            <li><i class="fas fa-check-circle"></i> Monthly subscription box</li>
+                            <li><i class="fas fa-check-circle"></i> Rare wild flower seeds collection</li>
+                            <li><i class="fas fa-check-circle"></i> Antique-style seed markers & twine</li>
+                            <li><i class="fas fa-check-circle"></i> Educational Victorian fact cards</li>
+                        </ul>
+                        
+                        <div class="box-price">
+                            <div class="price">$39.99<span>/month</span></div>
+                            <button class="cta-button" onclick="subscribeBox('cottage')">
+                                <i class="fas fa-shopping-cart"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <div class="container">
+        <section class="newsletter-section" id="newsletter">
+            <div class="section-title">
+                <h2>Join Our Gardening Community</h2>
+                <p>Subscribe for exclusive tips, seasonal guides, and special offers</p>
+            </div>
+            
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="cta-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Subscribe
+                </button>
+            </form>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--light-text);">
+                <i class="fas fa-lock"></i> No spam. Unsubscribe anytime.
+            </p>
+        </section>
+    </div>
+
+    <!-- Professional Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>We're here to help you grow. Contact our gardening experts for personalized advice and support.</p>
+            </div>
+            
+            <div class="contact-container">
+                <!-- Contact Information Side -->
+                <div class="contact-info">
+                    <div class="contact-header">
+                        <h2>Contact Information</h2>
+                        <p>Reach out to our gardening experts for personalized assistance</p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4>Headquarters</h4>
+                                <p>Kigali, Rwanda</p>
+                                <p>Europe, Asia & New Zealand Operations</p>
+                                <a href="https://maps.google.com/?q=Kigali,Rwanda" target="_blank">
+                                    View on Google Maps
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4>Phone & WhatsApp</h4>
+                                <p>+250 791 849 922</p>
+                                <p>Available 24/7 for urgent inquiries</p>
+                                <a href="https://wa.me/250791849922" target="_blank">
+                                    Start WhatsApp Chat
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4>Email Address</h4>
+                                <p>iraharijunior@gmail.com</p>
+                                <p>Primary contact for all inquiries</p>
+                                <a href="mailto:iraharijunior@gmail.com">
+                                    Send Direct Email
+                                    <i class="fas fa-paper-plane"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="contact-card-content">
+                                <h4>Social Media</h4>
+                                <p>@iraharijunior</p>
+                                <p>Daily gardening tips and updates</p>
+                                <a href="https://instagram.com/iraharijunior" target="_blank">
+                                    Follow on Instagram
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="business-hours">
+                        <h4>Business Hours</h4>
+                        <ul class="hours-list">
+                            <li>
+                                <span>Monday - Friday</span>
+                                <span>8:00 AM - 8:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Saturday</span>
+                                <span>9:00 AM - 6:00 PM</span>
+                            </li>
+                            <li>
+                                <span>Sunday</span>
+                                <span>10:00 AM - 4:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="office-location">
+                        <h4>
+                            <i class="fas fa-building"></i>
+                            Our Office Location
+                        </h4>
+                        <div class="office-map">
+                            <a href="https://maps.google.com/?q=Kigali,Rwanda" target="_blank">
+                                <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Office Location">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="response-time">
+                        <h5>
+                            <i class="fas fa-bolt"></i>
+                            Fast Response Guarantee
+                        </h5>
+                        <p>Average response time: <strong>1-2 hours</strong> during business hours</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form Side -->
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and our gardening experts will get back to you promptly.</p>
+                    </div>
+                    
+                    <form class="contact-form" id="professionalContactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group required">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                                <div class="error-message" id="nameError">Please enter your full name</div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                                <div class="error-message" id="emailError">Please enter a valid email address</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="inquiryType">Type of Inquiry</label>
+                            <select id="inquiryType" name="inquiryType" required>
+                                <option value="">Select inquiry type</option>
+                                <option value="subscription">Subscription Box Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Business Partnership</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="inquiryError">Please select an inquiry type</div>
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Brief description of your inquiry">
+                            <div class="error-message" id="subjectError">Please enter a subject</div>
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us about your gardening needs, questions, or suggestions..."></textarea>
+                            <div class="error-message" id="messageError">Please enter your message</div>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="submit-button">
+                                <i class="fas fa-spinner spinner"></i>
+                                <span class="button-text">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Message
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div class="privacy-notice">
+                            <i class="fas fa-shield-alt"></i>
+                            Your information is secure and will only be used to respond to your inquiry.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Start Your Gardening Journey</h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">Grow sustainably. Learn continuously. Garden confidently with Gardens.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#boxes" class="cta-button pulse-button" style="margin-right: 1rem;">
+                    <i class="fas fa-shopping-basket"></i>
+                    Explore Our Boxes
+                </a>
+                <a href="#contact" class="cta-button" style="background: transparent; border: 2px solid var(--accent-gold);">
+                    <i class="fas fa-comment-alt"></i>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Gardens</div>
+                    <p>Transforming gardening experiences since 2015. We provide premium gardening solutions across Europe, Asia, and New Zealand with expert community support.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/iraharijunior" aria-label="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/250791849922" aria-label="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:iraharijunior@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#boxes"><i class="fas fa-chevron-right"></i> Boxes</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#boxes"><i class="fas fa-seedling"></i> Gardening Boxes</a></li>
+                        <li><a href="#about"><i class="fas fa-leaf"></i> Expert Workshops</a></li>
+                        <li><a href="#about"><i class="fas fa-users"></i> Community Events</a></li>
+                        <li><a href="#contact"><i class="fas fa-gift"></i> Corporate Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="https://maps.google.com/?q=Kigali,Rwanda" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> Kigali, Rwanda
+                        </a></li>
+                        <li><a href="tel:+250791849922">
+                            <i class="fas fa-phone"></i> +250 791 849 922
+                        </a></li>
+                        <li><a href="https://wa.me/250791849922" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Available
+                        </a></li>
+                        <li><a href="mailto:iraharijunior@gmail.com">
+                            <i class="fas fa-envelope"></i> iraharijunior@gmail.com
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gardens. All rights reserved. | Designed with <i class="fas fa-heart bounce" style="color: var(--accent-blue);"></i> for gardeners worldwide</p>
+                <p style="margin-top: 0.5rem;">Serving Europe, Asia, and New Zealand | Made by MUSONERA IRAHARI JUNIOR</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Show welcome notification on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                showNotification('welcome', 'Welcome to Gardens!', 'Your gardening journey starts here. Discover premium gardening solutions.');
+            }, 1000);
+        });
+
+        // Notification System
+        function showNotification(type, title, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification-toast ${type}`;
+            notification.id = `notification-${Date.now()}`;
+            
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-circle';
+            if (type === 'warning') icon = 'fa-exclamation-triangle';
+            
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="notification-close" onclick="closeNotification('${notification.id}')">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Play notification sound
+            playNotificationSound(type);
+            
+            // Show notification with animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 600);
+                }
+            }, 5000);
+        }
+
+        function closeNotification(id) {
+            const notification = document.getElementById(id);
+            if (notification) {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 600);
+            }
+        }
+
+        function playNotificationSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            if (type === 'success') {
+                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } else if (type === 'subscribe') {
+                oscillator.frequency.setValueAtTime(392.00, audioContext.currentTime); // G4
+                oscillator.frequency.setValueAtTime(493.88, audioContext.currentTime + 0.1); // B4
+                oscillator.frequency.setValueAtTime(587.33, audioContext.currentTime + 0.2); // D5
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.4);
+            }
+        }
+
+        // Subscribe Function
+        function subscribeBox(boxType) {
+            const boxNames = {
+                'oddbox': 'Oddbox',
+                'flourish': 'Flourish',
+                'cottage': 'Cottage'
+            };
+            
+            showNotification('subscribe', 
+                'Subscription Started!', 
+                `Thank you for subscribing to ${boxNames[boxType]}! Check your email for confirmation.`
+            );
+            
+            // Log subscription
+            console.log(`=== NEW BOX SUBSCRIPTION ===`);
+            console.log(`Box: ${boxNames[boxType]}`);
+            console.log(`Time: ${new Date().toLocaleString()}`);
+            console.log(`===========================`);
+        }
+
+        // Count Up Animations
+        function animateCount(element, target, suffix = '', duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 20);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    element.textContent = Math.floor(current) + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 20);
+        }
+
+        // Experience Counters
+        function startExperienceCounters() {
+            const counters = [
+                { element: document.getElementById('expCount1'), target: 3, suffix: '+' },
+                { element: document.getElementById('expCount2'), target: 25, suffix: '+' },
+                { element: document.getElementById('expCount3'), target: 1000, suffix: '+' }
+            ];
+            
+            counters.forEach(counter => {
+                if (counter.element) {
+                    animateCount(counter.element, counter.target, counter.suffix);
+                }
+            });
+        }
+
+        // Stats Counters with Progress Animation
+        function startStatsCounters() {
+            const counters = [
+                { element: document.getElementById('count1'), target: 5000, suffix: '+' },
+                { element: document.getElementById('count2'), target: 15, suffix: '+' },
+                { element: document.getElementById('count3'), target: 98, suffix: '%' }
+            ];
+            
+            const statItems = document.querySelectorAll('.stat-item');
+            
+            counters.forEach((counter, index) => {
+                if (counter.element && statItems[index]) {
+                    // Start counting
+                    animateCount(counter.element, counter.target, counter.suffix);
+                    
+                    // Add counting class for progress animation
+                    statItems[index].classList.add('counting');
+                    statItems[index].classList.add('visible');
+                    
+                    // Add count-animated class after delay
+                    setTimeout(() => {
+                        counter.element.classList.add('count-animated');
+                    }, 200);
+                }
+            });
+        }
+
+        // Intersection Observers
+        const experienceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startExperienceCounters();
+                    experienceObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startStatsCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe sections
+        const experienceSection = document.querySelector('.experience-section');
+        const statsSection = document.querySelector('.stats-section');
+        
+        if (experienceSection) experienceObserver.observe(experienceSection);
+        if (statsSection) statsObserver.observe(statsSection);
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+
+        // Mobile Navigation
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.pageYOffset > 300);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+            
+            // Show loading state
+            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                showNotification('subscribe', 
+                    'Thank You for Subscribing!', 
+                    `Welcome to our gardening community! We've sent a confirmation to ${email}`
+                );
+                
+                newsletterForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Professional Contact Form
+        const contactForm = document.getElementById('professionalContactForm');
+        const formInputs = contactForm.querySelectorAll('input, select, textarea');
+        
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.classList.remove('show');
+            });
+            document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
+                input.classList.remove('error');
+            });
+            
+            // Validate name
+            const nameInput = document.getElementById('fullName');
+            if (!nameInput.value.trim()) {
+                document.getElementById('nameError').classList.add('show');
+                nameInput.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                document.getElementById('emailError').classList.add('show');
+                emailInput.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate inquiry type
+            const inquiryInput = document.getElementById('inquiryType');
+            if (!inquiryInput.value) {
+                document.getElementById('inquiryError').classList.add('show');
+                inquiryInput.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate subject
+            const subjectInput = document.getElementById('subject');
+            if (!subjectInput.value.trim()) {
+                document.getElementById('subjectError').classList.add('show');
+                subjectInput.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate message
+            const messageInput = document.getElementById('message');
+            if (!messageInput.value.trim()) {
+                document.getElementById('messageError').classList.add('show');
+                messageInput.classList.add('error');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Email preview function
+        function showEmailPreview(formData) {
+            document.getElementById('previewName').textContent = formData.fullName;
+            document.getElementById('previewEmail').textContent = formData.email;
+            document.getElementById('previewSubject').textContent = formData.subject;
+            document.getElementById('previewMessage').textContent = formData.message;
+            document.getElementById('previewDate').textContent = new Date().toLocaleString();
+            
+            document.getElementById('emailBackdrop').classList.add('show');
+            document.getElementById('emailPreview').classList.add('show');
+        }
+        
+        // Close email preview
+        function closeEmailPreview() {
+            document.getElementById('emailBackdrop').classList.remove('show');
+            document.getElementById('emailPreview').classList.remove('show');
+        }
+        
+        // Send email function
+        function sendEmail() {
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                inquiryType: document.getElementById('inquiryType').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            closeEmailPreview();
+            
+            // Show loading state
+            const submitBtn = contactForm.querySelector('.submit-button');
+            submitBtn.classList.add('loading');
+            
+            // Simulate email sending (in production, this would use EmailJS or a backend)
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                
+                // Show success message
+                showSuccessMessage();
+                
+                // Log the email data to console (in production, this would send to your server)
+                console.log('=== EMAIL SENT TO IRAHARIJUNIOR@GMAIL.COM ===');
+                console.log('From:', formData.email);
+                console.log('Name:', formData.fullName);
+                console.log('Phone:', formData.phone || 'Not provided');
+                console.log('Inquiry Type:', formData.inquiryType);
+                console.log('Subject:', formData.subject);
+                console.log('Message:', formData.message);
+                console.log('Time:', new Date().toLocaleString());
+                console.log('==============================================');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Also log to server (simulated)
+                logContactToServer(formData);
+                
+            }, 2000);
+        }
+        
+        // Show success message
+        function showSuccessMessage() {
+            document.getElementById('successBackdrop').classList.add('show');
+            document.getElementById('successMessage').classList.add('show');
+        }
+        
+        // Close success message
+        function closeSuccessMessage() {
+            document.getElementById('successBackdrop').classList.remove('show');
+            document.getElementById('successMessage').classList.remove('show');
+        }
+        
+        // Log contact to server (simulated)
+        function logContactToServer(formData) {
+            // In a real application, this would be an API call to your server
+            const contactLog = {
+                to: 'iraharijunior@gmail.com',
+                from: formData.email,
+                subject: `Gardens Contact Form: ${formData.subject}`,
+                name: formData.fullName,
+                phone: formData.phone,
+                inquiryType: formData.inquiryType,
+                message: formData.message,
+                timestamp: new Date().toISOString(),
+                ip: '127.0.0.1' // In production, get real IP
+            };
+            
+            console.log('Contact logged to server:', contactLog);
+            
+            // Show notification
+            showNotification('success', 'Email Sent!', 'Your message has been sent to iraharijunior@gmail.com');
+        }
+        
+        // Form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                const formData = {
+                    fullName: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    inquiryType: document.getElementById('inquiryType').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // Show email preview before sending
+                showEmailPreview(formData);
+            }
+        });
+        
+        // Real-time validation
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                validateForm();
+            });
+            
+            input.addEventListener('input', () => {
+                // Clear error when user starts typing
+                if (input.classList.contains('error')) {
+                    input.classList.remove('error');
+                    const errorId = input.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 100) {
+                header.style.padding = '0.8rem 0';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1.2rem 0';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Animation on scroll for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe cards for animation
+        document.querySelectorAll('.box-card, .value-card, .contact-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.box-card, .value-card, .contact-card').forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                closeEmailPreview();
+                closeSuccessMessage();
+            }
+        });
+    </script>
+</body>
+</html>
